@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<style>
+body{
+    text-align: center;
+    font-family: monospace;
+    margin: 0 10%;
+}
+
+input[type="file"]{
+    background-color: rgb(46, 80, 12);
+    color: white;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: large;
+    width:100%;
+}
+
+h1{
+    font-size: 35px;
+}
+
+form {
+margin: 0 auto;
+width:60%;
+}
+
+h4{
+text-align : justify;
+margin: 0 10%;
+}
+</style>
+
+
+<body>
+    <h1>Cocoa Disease Prediction Model</h1>
+    <h3> Choose an image file to predict the disease </h3>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="file" name="img" onchange="this.form.submit()"/><br/>
+<!--        <br/>-->
+<!--        <input type="submit" name="btn"/>-->
+
+    </form>
+
+      <div>
+            <img src="{{ filename}}" height="150px">
+      </div>
+    {% if (data) %}
+
+        <h2>Prediction: </h2>
+        <h3>Predicted Class is <b>{{data}}</b> with confidence of <b>{{c}}</b></h3>
+
+        <h2>Description: </h2>
+        {% if data == "moniliasis" %}
+    <h4><b>Symptoms of Monilia Disease:</b> <br> Spots on surface of immature pods; spots turning brown and rapidly enlarging to cover entire pod surface; disease affects only actively growing pods.<p></p>
+            <b>Management</b> <br>
+            Planting cocoa varieties that produce pods during the dry season allows the pod to avoid the disease; pods showing symptoms of disease should be removed to prevent spread; application of copper containing fungicides will help reduce disease incidence.
+            </h4>
+        {% elif data == "healthy" %}
+            <h4 style="text-align:center">Good for consumption</h4>
+        {% elif data == "phytopthora disease" %}
+            <h4><b>Symptom of back pod disease:</b><br>Under wet conditions, the fungus grows and reproduces, giving the spots a dingy white appearance. The infected pods darken to a blackish colour which eventually dries and becomes mummified.
+                The brown spot has a characteristic fishy odour. <p></p>
+            <b>CHEMICAL CONTROL</   b><br>
+                <ul>
+                    <li>Copper sprays are useful, if applied regularly (every 2 weeks) to the pods, especially during the main crop season. Trunk injections using phosphorous acid (as potassium phosphonate) are also effective. They are applied with a purpose-made syringe, once or twice a year, depending if there is low or high disease.</li>
+                    <li>When using a pesticide, always wear protective clothing and follow the instructions on the product label, such as dosage, timing of application, and pre-harvest interval. Recommendations will vary with the crop and system of cultivation. Expert advice on the most appropriate pesticides to use should always be sought from local agricultural authorities.</li>
+                </ul>
+            </h4>
+      {% else %}
+            <h4>Not Valid</h4>
+        {% endif %}
+
+    {% else %}
+        <h3></h3>
+    {% endif %}
+</body>
+ <script src="main.js">
+
+ </script>
+</html>
+
